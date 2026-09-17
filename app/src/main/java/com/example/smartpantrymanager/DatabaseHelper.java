@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
+import android.database.Cursor;
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "smart_pantry.db";
@@ -56,4 +58,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1; //if result is -1, insert failed otherwise it succeeded
     }
 
+    //get all pantry items
+    public ArrayList<PantryItem> getAllPantryItems(){
+        ArrayList<PantryItem> pantryItems = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + TABLE_PANTRY;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()){
+            do { //loops through all rows
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
+                double quantity = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY));
+                String unit = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_UNIT));
+                String expiryDate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXPIRY_DATE));
+
+                PantryItem item = new PantryItem(id, name, quantity, unit, expiryDate);
+
+                pantryItems.add(item);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return pantryItems;
+    }
 }
