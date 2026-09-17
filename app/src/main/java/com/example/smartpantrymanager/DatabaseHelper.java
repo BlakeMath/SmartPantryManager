@@ -433,7 +433,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return availableQuantity >= requiredQuantity;
     }
 
-    public ArrayList<Recipe> getSuggestedRecipe(){
-        return null;
+    public ArrayList<Recipe> getSuggestedRecipes(){
+        ArrayList<Recipe> suggestedRecipes = new ArrayList<>();
+        ArrayList<Recipe> allRecipes = getAllrecipes();
+        ArrayList<PantryItem> pantryItems = getAllPantryItems();
+
+        for(Recipe recipe : allRecipes){
+            ArrayList<RecipeIngredient> requiredIngredients = getRecipeIngredients(recipe.getId());
+
+            boolean canMakeRecipe = true;
+
+            for(RecipeIngredient required : requiredIngredients){
+                if(!hasEnoughIngredient(required, pantryItems)){
+                    canMakeRecipe = false;
+                    break;
+                }
+            }
+
+            if(canMakeRecipe){
+                suggestedRecipes.add(recipe);
+            }
+        }
+        return suggestedRecipes;
     }
 }

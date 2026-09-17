@@ -73,6 +73,12 @@ public class MainActivity extends AppCompatActivity{
             Intent intent = new Intent(MainActivity.this, AddEditIngredientActivity.class);
             startActivity(intent);
         });
+
+        Button buttonSuggestedRecipes = findViewById(R.id.buttonSuggestedRecipes);
+        buttonSuggestedRecipes.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override

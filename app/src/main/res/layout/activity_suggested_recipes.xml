@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,9 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="My Pantry"
+        android:text="Suggested Recipes"
         android:textSize="26sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewNoRecipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No recipes match your pantry yet - add more ingredients."
+        android:visibility="gone"
+        android:layout_marginBottom="12dp" />
 
     <View
         android:id="@+id/divider"
@@ -21,22 +30,9 @@
         android:background="@color/black" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPantry"
+        android:id="@+id/recyclerViewRecipes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
-    <Button
-        android:id="@+id/buttonAddIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Ingredient" />
-
-    <Button
-        android:id="@+id/buttonSuggestedRecipes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Suggested Recipes"
-        android:layout_marginTop="8dp" />
 
 </LinearLayout>
