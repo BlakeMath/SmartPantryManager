@@ -3,11 +3,11 @@ package com.example.smartpantrymanager;
 public class RecipeIngredient {
     private int id;
     private int recipeId;
-    private int ingredientName;
+    private String ingredientName;
     private double quantity;
     private String unit;
 
-    public RecipeIngredient(int id, int recipeId, int ingredientName, double quantity, String unit){
+    public RecipeIngredient(int id, int recipeId, String ingredientName, double quantity, String unit){
         this.id = id;
         this.recipeId = recipeId;
         this.ingredientName = ingredientName;
@@ -25,7 +25,7 @@ public class RecipeIngredient {
     public double getQuantity() {
         return quantity;
     }
-    public int getIngredientName() {
+    public String getIngredientName() {
         return ingredientName;
     }
     public int getRecipeId() {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "smart_pantry.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     private static final String TABLE_PANTRY = "pantry_items";
 
@@ -55,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ")";
         db.execSQL(createRecipeIngredientsTable);
 
+        seedRecipes(db);
     }
 
     //upgrade table
@@ -64,6 +65,169 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPE_INGREDIENTS);
         onCreate(db);
+    }
+
+    private long insertRecipe(SQLiteDatabase db, String name, String instructions) {
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("instructions", instructions);
+        return db.insert("recipes", null, values);
+    }
+
+    private void insertRecipeIngredient(SQLiteDatabase db, long recipeId, String ingredientName, double quantity, String unit) {
+        ContentValues values = new ContentValues();
+        values.put("recipe_id", recipeId);
+        values.put("ingredient_name", ingredientName);
+        values.put("quantity", quantity);
+        values.put("unit", unit);
+        db.insert(TABLE_RECIPE_INGREDIENTS, null, values);
+    }
+
+    private void seedRecipes(SQLiteDatabase db) {
+        long recipeId;
+
+        // 1. Scrambled Eggs
+        recipeId = insertRecipe(db,
+                "Scrambled Eggs",
+                "Beat the eggs. Melt butter in a pan. Add eggs and stir until cooked.");
+
+        insertRecipeIngredient(db, recipeId, "egg", 2, "item");
+        insertRecipeIngredient(db, recipeId, "butter", 10, "g");
+
+
+        // 2. Cheese Omelette
+        recipeId = insertRecipe(db,
+                "Cheese Omelette",
+                "Beat eggs. Cook in a buttered pan. Add cheese and fold.");
+
+        insertRecipeIngredient(db, recipeId, "egg", 2, "item");
+        insertRecipeIngredient(db, recipeId, "cheese", 50, "g");
+        insertRecipeIngredient(db, recipeId, "butter", 10, "g");
+
+
+        // 3. Tomato Toast
+        recipeId = insertRecipe(db,
+                "Tomato Toast",
+                "Toast the bread. Slice tomato and place it on the toast.");
+
+        insertRecipeIngredient(db, recipeId, "bread", 2, "slice");
+        insertRecipeIngredient(db, recipeId, "tomato", 1, "item");
+
+
+        // 4. Grilled Cheese
+        recipeId = insertRecipe(db,
+                "Grilled Cheese",
+                "Butter the bread, add cheese and grill until golden.");
+
+        insertRecipeIngredient(db, recipeId, "bread", 2, "slice");
+        insertRecipeIngredient(db, recipeId, "cheese", 50, "g");
+        insertRecipeIngredient(db, recipeId, "butter", 10, "g");
+
+
+        // 5. Tuna Sandwich
+        recipeId = insertRecipe(db,
+                "Tuna Sandwich",
+                "Mix tuna with mayonnaise and place between bread slices.");
+
+        insertRecipeIngredient(db, recipeId, "bread", 2, "slice");
+        insertRecipeIngredient(db, recipeId, "tuna", 100, "g");
+        insertRecipeIngredient(db, recipeId, "mayonnaise", 20, "g");
+
+
+        // 6. Chicken and Rice
+        recipeId = insertRecipe(db,
+                "Chicken and Rice",
+                "Cook the rice. Cook the chicken thoroughly and serve together.");
+
+        insertRecipeIngredient(db, recipeId, "chicken", 200, "g");
+        insertRecipeIngredient(db, recipeId, "rice", 100, "g");
+
+
+        // 7. Tomatoe Pasta
+        recipeId = insertRecipe(db,
+                "Tomatoe Pasta",
+                "Cook pasta. Chop and cook tomatoes, then combine.");
+
+        insertRecipeIngredient(db, recipeId, "pasta", 100, "g");
+        insertRecipeIngredient(db, recipeId, "tomatoe", 2, "item");
+
+
+        // 8. Cheese Pasta
+        recipeId = insertRecipe(db,
+                "Cheese Pasta",
+                "Cook pasta. Add milk and cheese and stir until creamy.");
+
+        insertRecipeIngredient(db, recipeId, "pasta", 100, "g");
+        insertRecipeIngredient(db, recipeId, "cheese", 50, "g");
+        insertRecipeIngredient(db, recipeId, "milk", 100, "ml");
+
+
+        // 9. Banana Oats
+        recipeId = insertRecipe(db,
+                "Banana Oats",
+                "Cook oats with milk. Slice banana and add on top.");
+
+        insertRecipeIngredient(db, recipeId, "oats", 50, "g");
+        insertRecipeIngredient(db, recipeId, "banana", 1, "item");
+        insertRecipeIngredient(db, recipeId, "milk", 200, "ml");
+
+
+        // 10. Peanut Butter Toast
+        recipeId = insertRecipe(db,
+                "Peanut Butter Toast",
+                "Toast the bread and spread peanut butter over it.");
+
+        insertRecipeIngredient(db, recipeId, "bread", 2, "slice");
+        insertRecipeIngredient(db, recipeId, "peanut butter", 30, "g");
+
+
+        // 11. Egg Fried Rice
+        recipeId = insertRecipe(db,
+                "Egg Fried Rice",
+                "Cook the egg in oil, add cooked rice and fry together.");
+
+        insertRecipeIngredient(db, recipeId, "rice", 150, "g");
+        insertRecipeIngredient(db, recipeId, "egg", 1, "item");
+        insertRecipeIngredient(db, recipeId, "oil", 10, "ml");
+
+
+        // 12. Chicken Sandwich
+        recipeId = insertRecipe(db,
+                "Chicken Sandwich",
+                "Cook chicken, slice it and place between bread with mayonnaise.");
+
+        insertRecipeIngredient(db, recipeId, "bread", 2, "slice");
+        insertRecipeIngredient(db, recipeId, "chicken", 150, "g");
+        insertRecipeIngredient(db, recipeId, "mayonnaise", 20, "g");
+
+
+        // 13. Banana Yogurt Bowl
+        recipeId = insertRecipe(db,
+                "Banana Yogurt Bowl",
+                "Slice banana and mix with yogurt.");
+
+        insertRecipeIngredient(db, recipeId, "banana", 1, "item");
+        insertRecipeIngredient(db, recipeId, "yogurt", 200, "g");
+
+
+        // 14. Apple Oats
+        recipeId = insertRecipe(db,
+                "Apple Oats",
+                "Cook oats with milk and add chopped apple.");
+
+        insertRecipeIngredient(db, recipeId, "oats", 50, "g");
+        insertRecipeIngredient(db, recipeId, "apple", 1, "item");
+        insertRecipeIngredient(db, recipeId, "milk", 200, "ml");
+
+
+        // 15. Tomatoe Egg Scramble
+        recipeId = insertRecipe(db,
+                "Tomatoe Egg Scramble",
+                "Cook chopped tomatoe in butter. Add beaten eggs and scramble.");
+
+        insertRecipeIngredient(db, recipeId, "egg", 2, "item");
+        insertRecipeIngredient(db, recipeId, "tomatoe", 1, "item");
+        insertRecipeIngredient(db, recipeId, "butter", 10, "g");
     }
 
     //add Pantry Item
@@ -136,5 +300,140 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return pantryItems;
+    }
+
+    public ArrayList<Recipe> getAllrecipes(){
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM TABLE_RECIPES", null);
+
+        if(cursor.moveToFirst()){
+            do{
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String instructions = cursor.getString(cursor.getColumnIndexOrThrow("instructions"));
+
+                Recipe recipe = new Recipe(id, name, instructions);
+                recipes.add(recipe);
+            }while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        return recipes;
+    }
+
+    public ArrayList<RecipeIngredient> getRecipeIngredients(int recipeId) {
+        ArrayList<RecipeIngredient> recipeIngredients = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_RECIPE_INGREDIENTS +
+                        " WHERE recipe_id = ?",
+                new String[]{String.valueOf(recipeId)}
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String ingredientName = cursor.getString(cursor.getColumnIndexOrThrow("ingredient_name"));
+                double quantity = cursor.getDouble(cursor.getColumnIndexOrThrow("quantity"));
+                String unit = cursor.getString(cursor.getColumnIndexOrThrow("unit"));
+
+                recipeIngredients.add(
+                        new RecipeIngredient(
+                                id,
+                                recipeId,
+                                ingredientName,
+                                quantity,
+                                unit
+                        )
+                );
+            } while(cursor.moveToNext());
+        }
+        cursor.close();
+        return recipeIngredients;
+    }
+
+    private String normalizeIngredientName(String name){
+        String normalized = name.toLowerCase().trim();
+
+        if(normalized.equals("tomato")){
+            return "tomatoe";
+        }
+
+        if (normalized.endsWith("s") && !normalized.equals("oats")){
+            normalized = normalized.substring(0,normalized.length()-1);
+        }
+
+        return normalized;
+    }
+
+    private String getBaseUnit(String unit){
+        String normalized = unit.toLowerCase().trim();
+
+        switch(normalized) {
+            case "kg":
+            case "g":
+            case "gram":
+            case "grams":
+                return "g";
+
+            case "l":
+            case "litre":
+            case "litres":
+            case "liter":
+            case "liters":
+            case "ml":
+                return "ml";
+
+            case "item":
+            case "items":
+            case "each":
+                return "item";
+
+            default:
+                return normalized;
+        }
+    }
+
+    private double convertToBaseQuantity(double quantity, String unit){
+        String normalized = unit.toLowerCase().trim();
+
+        switch(normalized){
+            case "kg":
+                return quantity * 1000;
+
+            case "l":
+            case "litre":
+            case "litres":
+            case "liter":
+            case "liters":
+                return quantity*1000;
+            default:
+                return quantity;
+        }
+    }
+
+    private boolean hasEnoughIngredient(RecipeIngredient requiredIngredient, ArrayList<PantryItem> pantryItems){
+        String requiredName = normalizeIngredientName(requiredIngredient.getIngredientName());
+        String requiredUnit = getBaseUnit(requiredIngredient.getUnit());
+        double requiredQuantity = convertToBaseQuantity(requiredIngredient.getQuantity(), requiredIngredient.getUnit());
+
+        double availableQuantity = 0;
+
+        for (PantryItem pantryItem : pantryItems){
+            String pantryName = normalizeIngredientName(pantryItem.getName());
+            String pantryUnit = getBaseUnit(pantryItem.getUnit());
+
+            if(requiredName.equals(pantryName) && requiredUnit.equals(pantryUnit)){
+                availableQuantity += convertToBaseQuantity(pantryItem.getQuantity(), pantryItem.getUnit());
+            }
+        }
+        return availableQuantity >= requiredQuantity;
+    }
+
+    public ArrayList<Recipe> getSuggestedRecipe(){
+        return null;
     }
 }
