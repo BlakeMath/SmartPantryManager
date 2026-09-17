@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "smart_pantry.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     private static final String TABLE_PANTRY = "pantry_items";
 
@@ -19,6 +19,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_QUANTITY = "quantity";
     private static final String COLUMN_UNIT = "unit";
     private static final String COLUMN_EXPIRY_DATE = "expiry_date";
+
+    private static final String TABLE_RECIPES = "recipes";
+    private static final String TABLE_RECIPE_INGREDIENTS = "recipe_ingredients";
 
     //constructor
     public DatabaseHelper(Context context) {
@@ -35,12 +38,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_UNIT + " TEXT NOT NULL, " +
                 COLUMN_EXPIRY_DATE + " TEXT)";
         db.execSQL(createPantryTable);
+
+        String createRecipeTable = "CREATE TABLE " + TABLE_RECIPES + " (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT NOT NULL, " +
+                "instructions TEXT NOT NULL" +
+                ")";
+        db.execSQL(createRecipeTable);
+
+        String createRecipeIngredientsTable = "CREATE TABLE " + TABLE_RECIPE_INGREDIENTS + " (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "recipe_id INTEGER NOT NULL, " +
+                "ingredient_name TEXT NOT NULL, " +
+                "quantity REAL NOT NULL, " +
+                "unit TEXT NOT NULL" +
+                ")";
+        db.execSQL(createRecipeIngredientsTable);
+
     }
 
     //upgrade table
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PANTRY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPE_INGREDIENTS);
         onCreate(db);
     }
 

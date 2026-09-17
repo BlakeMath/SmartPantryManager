@@ -35,7 +35,6 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         return new PantryViewHolder(view);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PantryViewHolder holder, int position) {
         PantryItem item = pantryItems.get(position);
