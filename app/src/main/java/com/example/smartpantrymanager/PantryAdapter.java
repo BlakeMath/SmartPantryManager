@@ -1,9 +1,11 @@
 package com.example.smartpantrymanager;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,10 +14,18 @@ import java.util.ArrayList;
 
 public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryViewHolder>{
     private ArrayList<PantryItem> pantryItems;
+    private OnItemClickListener listener;
+
+    //interface
+    public interface OnItemClickListener{
+        void onEditClick(PantryItem item);
+        void onDeleteClick(PantryItem item);
+    }
 
     //constructor
-    public PantryAdapter(ArrayList<PantryItem> pantryItems){
+    public PantryAdapter(ArrayList<PantryItem> pantryItems, OnItemClickListener listener){
         this.pantryItems = pantryItems;
+        this.listener = listener;
     }
 
     @NonNull
@@ -25,6 +35,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         return new PantryViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PantryViewHolder holder, int position) {
         PantryItem item = pantryItems.get(position);
@@ -39,6 +50,14 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         }else {
             holder.textViewItemExpiry.setText("Expiry: " + item.getExpiryDate());
         }
+
+        holder.buttonEdit.setOnClickListener(v -> {
+            listener.onEditClick(item);
+        });
+        holder.buttonDelete.setOnClickListener(v -> {
+            listener.onDeleteClick(item);
+        });
+
     }
 
     //get item count
@@ -52,12 +71,16 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         TextView textViewItemName;
         TextView textViewItemQuantity;
         TextView textViewItemExpiry;
+        Button buttonEdit;
+        Button buttonDelete;
 
         public PantryViewHolder(@NonNull View itemView){
             super(itemView);
             textViewItemName = itemView.findViewById(R.id.textViewItemName);
             textViewItemQuantity = itemView.findViewById(R.id.textViewItemQuantity);
             textViewItemExpiry = itemView.findViewById(R.id.textViewItemExpiry);
+            buttonEdit = itemView.findViewById(R.id.buttonEdit);
+            buttonDelete = itemView.findViewById(R.id.buttonDelete);
         }
     }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="1dp">
 
     <TextView
         android:id="@+id/textViewItemName"
@@ -19,12 +19,37 @@
         android:id="@+id/textViewItemQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2 L" />
+        android:layout_marginTop="4dp"
+        android:text="2.0 L" />
 
     <TextView
         android:id="@+id/textViewItemExpiry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Expiry: 2026-09-25" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edit" />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Delete" />
+
+    </LinearLayout>
 
 </LinearLayout>

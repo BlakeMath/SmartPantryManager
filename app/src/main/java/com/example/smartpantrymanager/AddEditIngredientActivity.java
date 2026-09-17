@@ -1,5 +1,6 @@
 package com.example.smartpantrymanager;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
     private EditText editTextQuantity;
     private EditText editTextUnit;
     private EditText editTextExpiryDate;
+    private int itemId = -1;
 
     private DatabaseHelper databaseHelper;
 
@@ -27,6 +29,15 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         Button buttonSave = findViewById(R.id.buttonSave);
 
         databaseHelper = new DatabaseHelper(this);
+
+        if(getIntent().hasExtra("id")){
+            itemId = getIntent().getIntExtra("id", -1);
+            editTextName.setText(getIntent().getStringExtra("name"));
+            editTextQuantity.setText(String.valueOf(getIntent().getDoubleExtra("quantity", 0)));
+            editTextUnit.setText(getIntent().getStringExtra("unit"));
+            editTextExpiryDate.setText(getIntent().getStringExtra("expiryDate"));
+            buttonSave.setText("Update Ingredient");
+        }
 
         buttonSave.setOnClickListener(v -> saveIngredient());
     }
@@ -58,14 +69,20 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         );
 
         //add item to database
-        boolean success = databaseHelper.addPantryItem(item);
+        boolean success;
+        if (itemId == -1){
+            success = databaseHelper.addPantryItem(item);
+        }else{
+            item.setId(itemId);
+            success = databaseHelper.updatePantryItem(item);
+        }
 
         //check if item was added successfully
         if(success){
-            Toast.makeText(this, "Ingredient Added Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, itemId == -1 ? "Ingredient Saved" : "Ingredient Updated", Toast.LENGTH_SHORT).show();
             finish();
         }else{
-            Toast.makeText(this, "Failed to Add Ingredient", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unable to save ingredient", Toast.LENGTH_SHORT).show();
         }
     }
 }

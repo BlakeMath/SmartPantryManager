@@ -58,6 +58,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1; //if result is -1, insert failed otherwise it succeeded
     }
 
+    //update Pantry Item
+    public boolean updatePantryItem(PantryItem item){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME, item.getName());
+        values.put(COLUMN_QUANTITY, item.getQuantity());
+        values.put(COLUMN_UNIT, item.getUnit());
+        values.put(COLUMN_EXPIRY_DATE, item.getExpiryDate());
+
+        int rowsAffected = db.update(
+                TABLE_PANTRY,
+                values,
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(item.getId())}
+        );
+
+        return rowsAffected > 0;
+    }
+
+    //delete Pantry Item
+    public boolean deletePantryItem(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int rowsDeleted = db.delete(
+                TABLE_PANTRY,
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}
+        );
+
+        return rowsDeleted > 0;
+    }
+
     //get all pantry items
     public ArrayList<PantryItem> getAllPantryItems(){
         ArrayList<PantryItem> pantryItems = new ArrayList<>();

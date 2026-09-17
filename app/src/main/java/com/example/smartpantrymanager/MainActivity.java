@@ -1,5 +1,6 @@
 package com.example.smartpantrymanager;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.content.Intent;
 import android.widget.Button;
@@ -28,7 +29,41 @@ public class MainActivity extends AppCompatActivity{
 
         pantryItems = databaseHelper.getAllPantryItems();
 
-        pantryAdapter = new PantryAdapter(pantryItems);
+        pantryAdapter = new PantryAdapter(
+                pantryItems,
+                new PantryAdapter.OnItemClickListener() {
+
+                    @Override
+                    public void onEditClick(PantryItem item) {
+
+                        Intent intent = new Intent(
+                                MainActivity.this,
+                                AddEditIngredientActivity.class
+                        );
+
+                        intent.putExtra("id", item.getId());
+                        intent.putExtra("name", item.getName());
+                        intent.putExtra("quantity", item.getQuantity());
+                        intent.putExtra("unit", item.getUnit());
+                        intent.putExtra("expiryDate", item.getExpiryDate());
+
+                        startActivity(intent);
+                    }
+
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onDeleteClick(PantryItem item) {
+
+                        boolean success =
+                                databaseHelper.deletePantryItem(item.getId());
+
+                        if (success) {
+                            pantryItems.remove(item);
+                            pantryAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+        );
 
         recyclerViewPantry.setLayoutManager(new LinearLayoutManager(this));
 
