@@ -67,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //insert Recipe
     private long insertRecipe(SQLiteDatabase db, String name, String instructions) {
         ContentValues values = new ContentValues();
         values.put("name", name);
@@ -74,6 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert("recipes", null, values);
     }
 
+    //insert Recipe Ingredient
     private void insertRecipeIngredient(SQLiteDatabase db, long recipeId, String ingredientName, double quantity, String unit) {
         ContentValues values = new ContentValues();
         values.put("recipe_id", recipeId);
@@ -83,6 +85,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_RECIPE_INGREDIENTS, null, values);
     }
 
+    //generate recipes
     private void seedRecipes(SQLiteDatabase db) {
         long recipeId;
 
@@ -302,6 +305,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return pantryItems;
     }
 
+    //get all recipes
     public ArrayList<Recipe> getAllrecipes(){
         ArrayList<Recipe> recipes = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -323,6 +327,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return recipes;
     }
 
+    //get recipe ingredients
     public ArrayList<RecipeIngredient> getRecipeIngredients(int recipeId) {
         ArrayList<RecipeIngredient> recipeIngredients = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -355,6 +360,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return recipeIngredients;
     }
 
+    //normalize ingredient name
     private String normalizeIngredientName(String name){
         String normalized = name.toLowerCase().trim();
 
@@ -369,6 +375,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return normalized;
     }
 
+    // get base unit
     private String getBaseUnit(String unit){
         String normalized = unit.toLowerCase().trim();
 
@@ -397,6 +404,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //convert quantity to base unit
     private double convertToBaseQuantity(double quantity, String unit){
         String normalized = unit.toLowerCase().trim();
 
@@ -415,6 +423,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //check if recipe has enough ingredient
     private boolean hasEnoughIngredient(RecipeIngredient requiredIngredient, ArrayList<PantryItem> pantryItems){
         String requiredName = normalizeIngredientName(requiredIngredient.getIngredientName());
         String requiredUnit = getBaseUnit(requiredIngredient.getUnit());
@@ -433,6 +442,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return availableQuantity >= requiredQuantity;
     }
 
+    //Strict Recipe Suggestion
     public ArrayList<Recipe> getSuggestedRecipes(){
         ArrayList<Recipe> suggestedRecipes = new ArrayList<>();
         ArrayList<Recipe> allRecipes = getAllrecipes();

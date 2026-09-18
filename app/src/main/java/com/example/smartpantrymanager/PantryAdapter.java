@@ -27,6 +27,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         this.listener = listener;
     }
 
+    //create view holder
     @NonNull
     @Override
     public PantryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
@@ -34,6 +35,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         return new PantryViewHolder(view);
     }
 
+    //bind view holder
     @Override
     public void onBindViewHolder(@NonNull PantryViewHolder holder, int position) {
         PantryItem item = pantryItems.get(position);
@@ -64,7 +66,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         return pantryItems.size();
     }
 
-
+    //view holder
     public static class PantryViewHolder extends RecyclerView.ViewHolder{
         TextView textViewItemName;
         TextView textViewItemQuantity;

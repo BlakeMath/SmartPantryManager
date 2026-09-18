@@ -16,6 +16,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
 
     private DatabaseHelper databaseHelper;
 
+    //create the activity
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

@@ -7,6 +7,7 @@ public class RecipeIngredient {
     private double quantity;
     private String unit;
 
+    // RecipeIngredient Constructor
     public RecipeIngredient(int id, int recipeId, String ingredientName, double quantity, String unit){
         this.id = id;
         this.recipeId = recipeId;

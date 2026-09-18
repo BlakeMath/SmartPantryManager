@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity{
     private DatabaseHelper databaseHelper;
     private ArrayList<PantryItem> pantryItems;
 
+    //create the activity
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -24,6 +25,10 @@ public class MainActivity extends AppCompatActivity{
 
         recyclerViewPantry = findViewById(R.id.recyclerViewPantry);
         Button buttonAddIngredient = findViewById(R.id.buttonAddIngredient);
+        Button buttonSuggestedRecipes = findViewById(R.id.buttonSuggestedRecipes);
+        Button buttonNavPantry = findViewById(R.id.buttonNavPantry);
+        Button buttonNavRecipes = findViewById(R.id.buttonNavRecipes);
+        Button buttonNavSettings = findViewById(R.id.buttonNavSettings);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -69,18 +74,33 @@ public class MainActivity extends AppCompatActivity{
 
         recyclerViewPantry.setAdapter(pantryAdapter);
 
+        //button listeners
         buttonAddIngredient.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AddEditIngredientActivity.class);
             startActivity(intent);
         });
 
-        Button buttonSuggestedRecipes = findViewById(R.id.buttonSuggestedRecipes);
         buttonSuggestedRecipes.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
             startActivity(intent);
         });
+
+        buttonNavRecipes.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
+            startActivity(intent);
+        });
+
+        buttonNavSettings.setOnClickListener(v -> {
+           Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+           startActivity(intent);
+        });
+
+        buttonNavPantry.setOnClickListener(v -> {
+            //nothing because we are already on the screen
+        });
     }
 
+    //update the activity
     @Override
     protected void onResume(){
         super.onResume();
