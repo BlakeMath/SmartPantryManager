@@ -306,7 +306,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<Recipe> recipes = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM TABLE_RECIPES", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECIPES, null);;
 
         if(cursor.moveToFirst()){
             do{

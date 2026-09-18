@@ -27,6 +27,8 @@ public class SuggestedRecipesActivity extends AppCompatActivity{
         suggestedRecipes = databaseHelper.getSuggestedRecipes();
         recipeAdapter = new RecipeAdapter(suggestedRecipes);
 
+        recyclerViewRecipes.setLayoutManager(new LinearLayoutManager(this));
+
         recyclerViewRecipes.setAdapter(recipeAdapter);
 
         if(suggestedRecipes.isEmpty()){
