@@ -5,36 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="40dp">
+    android:background="@color/pantry_background">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Suggested Recipes"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:background="@color/pantry_green"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suggested Recipes"
+            android:textColor="@color/pantry_white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recipes you can make right now"
+            android:textColor="#DDE8E1"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewNoRecipes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No recipes match your pantry yet - add more ingredients."
-        android:visibility="gone"
-        android:layout_marginBottom="12dp" />
-
-    <View
-        android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black" />
+        android:layout_height="wrap_content"
+        android:text="No recipes match your pantry yet.\nAdd more ingredients to see suggestions."
+        android:textColor="@color/pantry_secondary_text"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewRecipes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:clipToPadding="false" />
 
     <include
         layout="@layout/bottom_navigation" />
+
 </LinearLayout>

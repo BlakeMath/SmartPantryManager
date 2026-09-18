@@ -5,21 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/recipe_background"
+    android:elevation="3dp"
     android:padding="16dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="12dp">
 
     <TextView
         android:id="@+id/textViewRecipeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recipe Name"
-        android:textSize="19sp"
-        android:textStyle="bold" />
+        android:text="Cheese Omelette"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/pantry_text" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="You have all required ingredients"
-        android:layout_marginTop="4dp" />
+        android:textSize="14sp"
+        android:textColor="@color/pantry_green"
+        android:layout_marginTop="6dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap to view recipe"
+        android:textSize="13sp"
+        android:textColor="@color/pantry_secondary_text"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

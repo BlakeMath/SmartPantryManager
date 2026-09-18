@@ -1,55 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/pantry_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="30dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="Add Ingredient"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextName"
+        <!-- Header -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#25FF0000"
-            android:hint="Ingredient name"
-            android:inputType="textCapWords" />
+            android:orientation="vertical"
+            android:background="@color/pantry_green"
+            android:padding="20dp">
 
-        <EditText
-            android:id="@+id/editTextQuantity"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredient Details"
+                android:textColor="@color/pantry_white"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add or update an item in your pantry"
+                android:textColor="#DDE8E1"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <!-- Form -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Quantity"
-            android:inputType="numberDecimal" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <EditText
-            android:id="@+id/editTextUnit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Unit (kg, g, L, items)" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredient name"
+                android:textStyle="bold"
+                android:textColor="@color/pantry_text" />
 
-        <EditText
-            android:id="@+id/editTextExpiryDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Expiry date (YYYY-MM-DD)" />
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. Milk"
+                android:inputType="textCapWords"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp" />
 
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Save Ingredient" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textStyle="bold"
+                android:textColor="@color/pantry_text" />
+
+            <EditText
+                android:id="@+id/editTextQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. 2"
+                android:inputType="numberDecimal"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:textStyle="bold"
+                android:textColor="@color/pantry_text" />
+
+            <EditText
+                android:id="@+id/editTextUnit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. kg, g, L, ml, items"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expiry date"
+                android:textStyle="bold"
+                android:textColor="@color/pantry_text" />
+
+            <EditText
+                android:id="@+id/editTextExpiryDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="YYYY-MM-DD (optional)"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp" />
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Ingredient"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textColor="@color/pantry_white"
+                android:backgroundTint="@color/pantry_green" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

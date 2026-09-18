@@ -3,52 +3,101 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/pantry_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewRecipeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recipe Name"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ingredients"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp" />
-
-        <TextView
-            android:id="@+id/textViewIngredients"
+        <!-- Header -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:orientation="vertical"
+            android:background="@color/pantry_green"
+            android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Method"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp" />
+            <TextView
+                android:id="@+id/textViewRecipeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recipe Name"
+                android:textColor="@color/pantry_white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"/>
 
-        <TextView
-            android:id="@+id/textViewInstructions"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You have everything needed for this recipe"
+                android:textColor="#DDE8E1"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <!-- Recipe content -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <include
-            layout="@layout/bottom_navigation" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredients"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="@color/pantry_text" />
+
+            <TextView
+                android:id="@+id/textViewIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/pantry_background"
+                android:elevation="2dp"
+                android:padding="16dp"
+                android:textColor="@color/pantry_text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Method"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="@color/pantry_text"
+                android:layout_marginTop="24dp" />
+
+            <TextView
+                android:id="@+id/textViewInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/pantry_background"
+                android:elevation="2dp"
+                android:padding="16dp"
+                android:textColor="@color/pantry_text"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp" />
+
+            <Button
+                android:id="@+id/buttonBack"
+                android:layout_width="141dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/pantry_green"
+                android:padding="0dp"
+                android:text="Back to Recipes"
+                android:textAllCaps="false"
+                android:textColor="@color/pantry_white" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

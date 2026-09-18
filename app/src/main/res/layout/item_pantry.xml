@@ -1,54 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
     android:orientation="vertical"
-    android:padding="1dp">
+    android:background="@drawable/pantry_background"
+    android:elevation="3dp"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
 
     <TextView
         android:id="@+id/textViewItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Milk"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/pantry_text" />
 
     <TextView
         android:id="@+id/textViewItemQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="2.0 L" />
+        android:text="2.0 L"
+        android:textSize="16sp"
+        android:textColor="@color/pantry_green"
+        android:layout_marginTop="4dp" />
 
     <TextView
         android:id="@+id/textViewItemExpiry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Expiry: 2026-09-25" />
+        android:text="Expires: 2026-09-25"
+        android:textSize="14sp"
+        android:textColor="@color/pantry_secondary_text"
+        android:layout_marginTop="6dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
 
         <Button
             android:id="@+id/buttonEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Edit" />
+            android:text="Edit"
+            android:textAllCaps="false"
+            android:textColor="@color/pantry_green"
+            android:backgroundTint="@color/pantry_green_light" />
 
         <Button
             android:id="@+id/buttonDelete"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Delete" />
+            android:text="Delete"
+            android:textAllCaps="false"
+            android:textColor="@color/pantry_white"
+            android:backgroundTint="@color/pantry_red"
+            android:layout_marginStart="8dp" />
 
     </LinearLayout>
 

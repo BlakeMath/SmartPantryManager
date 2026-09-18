@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/pantry_white"
+    android:elevation="8dp"
+    android:padding="6dp">
 
     <Button
         android:id="@+id/buttonNavPantry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Pantry" />
+        android:text="Pantry"
+        android:textAllCaps="false"
+        android:textColor="@color/pantry_green"
+        android:backgroundTint="@color/pantry_white" />
 
     <Button
         android:id="@+id/buttonNavRecipes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Recipes" />
+        android:text="Recipes"
+        android:textAllCaps="false"
+        android:textColor="@color/pantry_green"
+        android:backgroundTint="@color/pantry_white" />
 
     <Button
         android:id="@+id/buttonNavSettings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Settings" />
+        android:text="Settings"
+        android:textAllCaps="false"
+        android:textColor="@color/pantry_green"
+        android:backgroundTint="@color/pantry_white" />
 
 </LinearLayout>

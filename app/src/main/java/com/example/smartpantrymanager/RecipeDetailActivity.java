@@ -1,9 +1,8 @@
 package com.example.smartpantrymanager;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,9 +19,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
         TextView textViewRecipeTitle = findViewById(R.id.textViewRecipeTitle);
         TextView textViewIngredients = findViewById(R.id.textViewIngredients);
         TextView textViewInstructions = findViewById(R.id.textViewInstructions);
-        Button buttonNavPantry = findViewById(R.id.buttonNavPantry);
-        Button buttonNavRecipes = findViewById(R.id.buttonNavRecipes);
-        Button buttonNavSettings = findViewById(R.id.buttonNavSettings);
+        Button buttonBack = findViewById(R.id.buttonBack);
+
+        buttonBack.setOnClickListener(v -> finish());
 
         int recipeId = getIntent().getIntExtra("recipeId", -1);
         String recipeName = getIntent().getStringExtra("recipeName");
@@ -48,24 +47,5 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
 
         textViewIngredients.setText(ingredientStringBuilder.toString());
-
-        //button listeners
-        buttonNavRecipes.setOnClickListener(v -> {
-            Intent intent = new Intent(RecipeDetailActivity.this, SuggestedRecipesActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        buttonNavSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(RecipeDetailActivity.this, SettingsActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        buttonNavPantry.setOnClickListener(v -> {
-            Intent intent = new Intent(RecipeDetailActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        });
     }
 }

@@ -5,21 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:background="@color/pantry_background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:textSize="26sp"
-        android:textStyle="bold" />
-
-    <Switch
-        android:id="@+id/switchExpiryAlerts"
+    <!-- Header -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Expiring-soon alerts"
-        android:layout_marginTop="24dp" />
+        android:orientation="vertical"
+        android:background="@color/pantry_green"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textColor="@color/pantry_white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage your Smart Pantry preferences"
+            android:textColor="#DDE8E1"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+    </LinearLayout>
+
+    <!-- Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pantry Preferences"
+            android:textColor="@color/pantry_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/pantry_background"
+            android:elevation="2dp"
+            android:padding="16dp"
+            android:layout_marginTop="12dp">
+
+            <Switch
+                android:id="@+id/switchExpiryAlerts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Expiring-soon alerts"
+                android:textColor="@color/pantry_text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enable alerts for ingredients that are close to their expiry date."
+                android:textColor="@color/pantry_secondary_text"
+                android:textSize="13sp"
+                android:layout_marginTop="6dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <include
         layout="@layout/bottom_navigation" />
