@@ -14,6 +14,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private ArrayList<Recipe> recipes;
     private OnRecipeClickListener listener;
 
+    //constructor
     public RecipeAdapter(ArrayList<Recipe> recipes, OnRecipeClickListener listener){
         this.recipes = recipes;
         this.listener = listener;
@@ -23,6 +24,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         void onRecipeClick(Recipe recipe);
     }
 
+    //create view holder
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
@@ -30,6 +32,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return new RecipeViewHolder(view);
     }
 
+    //bind view holder
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position){
         Recipe recipe = recipes.get(position);
@@ -40,11 +43,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         });
     }
 
+    //get item count
     @Override
     public int getItemCount(){
         return recipes.size();
     }
 
+    //view holder
     public static class RecipeViewHolder extends RecyclerView.ViewHolder{
         TextView textViewRecipeName;
 

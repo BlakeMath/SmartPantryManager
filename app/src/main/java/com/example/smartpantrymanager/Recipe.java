@@ -5,8 +5,7 @@ public class Recipe {
     private String name;
     private String instructions;
 
-
-
+    // Recipe Constructor
     public Recipe(int id, String name, String instructions) {
         this.id = id;
         this.name = name;

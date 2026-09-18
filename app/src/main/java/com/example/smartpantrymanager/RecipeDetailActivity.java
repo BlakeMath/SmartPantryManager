@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
+    //create the activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
