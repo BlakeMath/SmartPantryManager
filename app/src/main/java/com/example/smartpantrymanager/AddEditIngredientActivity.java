@@ -51,14 +51,38 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         String unit = editTextUnit.getText().toString().trim();
         String expiryDate = editTextExpiryDate.getText().toString().trim();
 
-        //check if fields are empty
-        if(name.isEmpty() || quantityText.isEmpty() || unit.isEmpty() || expiryDate.isEmpty()){
-            Toast.makeText(this, "Please Complete All Required Fields", Toast.LENGTH_SHORT).show();
+        //validate fields
+        if(name.isEmpty()){
+            editTextName.setError("Name is required");
+            return;
+        }
+        if(quantityText.isEmpty()){
+            editTextQuantity.setError("Quantity is required");
+            return;
+        }
+        if (unit.isEmpty()){
+            editTextUnit.setError("Unit is required");
             return;
         }
 
         //convert quantity to double
-        double quantity = Double.parseDouble(quantityText);
+        double quantity = -1;
+        try {
+            quantity = Double.parseDouble(quantityText);
+        }catch(NumberFormatException e){
+            editTextQuantity.setError("Invalid quantity");
+            return;
+        }
+        if (quantity <= 0){
+            editTextQuantity.setError("Quantity must be greater than 0");
+            return;
+        }
+
+        //validate expiry date if added
+        if (!expiryDate.isEmpty() && !expiryDate.matches("\\d{4}-\\d{2}-\\d{2}")){
+            editTextExpiryDate.setError("Use format YYYY-MM-DD");
+            return;
+        }
 
         //create new PantryItem object
         PantryItem item = new PantryItem(
