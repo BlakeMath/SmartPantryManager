@@ -12,9 +12,15 @@ import java.util.ArrayList;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>{
     private ArrayList<Recipe> recipes;
+    private OnRecipeClickListener listener;
 
-    public RecipeAdapter(ArrayList<Recipe> recipes){
+    public RecipeAdapter(ArrayList<Recipe> recipes, OnRecipeClickListener listener){
         this.recipes = recipes;
+        this.listener = listener;
+    }
+
+    public interface OnRecipeClickListener{
+        void onRecipeClick(Recipe recipe);
     }
 
     @NonNull
@@ -28,6 +34,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position){
         Recipe recipe = recipes.get(position);
         holder.textViewRecipeName.setText(recipe.getName());
+
+        holder.itemView.setOnClickListener(v -> {
+            listener.onRecipeClick(recipe);
+        });
     }
 
     @Override
@@ -43,4 +53,5 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             textViewRecipeName = itemView.findViewById(R.id.textViewRecipeName);
         }
     }
+
 }
