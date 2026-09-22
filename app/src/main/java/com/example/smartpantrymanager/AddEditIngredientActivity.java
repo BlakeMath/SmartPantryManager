@@ -22,6 +22,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_ingredient);
 
+        //initialize views
         editTextName = findViewById(R.id.editTextName);
         editTextQuantity = findViewById(R.id.editTextQuantity);
         editTextUnit = findViewById(R.id.editTextUnit);
@@ -89,10 +90,10 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         //create new PantryItem object
         PantryItem item = new PantryItem(
                 0,
-               name,
-               quantity,
-               unit,
-               expiryDate
+                name,
+                quantity,
+                unit,
+                expiryDate
         );
 
         //add item to database

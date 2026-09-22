@@ -1,6 +1,5 @@
 package com.example.smartpantrymanager;
 
-//imports
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -364,11 +363,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String normalizeIngredientName(String name){
         String normalized = name.toLowerCase().trim();
 
-        if(normalized.equals("tomato")){
-            return "tomatoe";
+        if(normalized.equals("tomato") || normalized.equals("tomotoe")){
+            return "tomatoes";
         }
 
-        if (normalized.endsWith("s") && !normalized.equals("oats")){
+        if (normalized.endsWith("s")){
             normalized = normalized.substring(0,normalized.length()-1);
         }
 
@@ -398,6 +397,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             case "items":
             case "each":
                 return "item";
+
+            case "slice":
+            case "slices":
+                return "slices";
 
             default:
                 return normalized;
