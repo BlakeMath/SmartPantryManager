@@ -28,6 +28,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         editTextExpiryDate = findViewById(R.id.editTextExpiryDate);
 
         Button buttonSave = findViewById(R.id.buttonSave);
+        Button buttonBack = findViewById(R.id.buttonBack);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -41,6 +42,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         }
 
         buttonSave.setOnClickListener(v -> saveIngredient());
+        buttonBack.setOnClickListener(v -> finish());
     }
 
     //save ingredient, checks if fields are fulled in, creates the object then uses that to add to the database using addPantryItem method

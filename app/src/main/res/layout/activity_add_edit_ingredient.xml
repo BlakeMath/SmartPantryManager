@@ -12,33 +12,49 @@
         android:orientation="vertical">
 
         <!-- Header -->
+
+        <!-- Form -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@color/pantry_green"
+            android:orientation="vertical"
             android:padding="20dp">
+
+            <Button
+                android:id="@+id/buttonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:text="← Back to Pantry"
+                android:textAllCaps="false"
+                android:textColor="@color/pantry_white"
+                android:backgroundTint="@color/pantry_green"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="0dp"
                 android:text="Ingredient Details"
                 android:textColor="@color/pantry_white"
                 android:textSize="26sp"
-                android:textStyle="bold"
-                android:paddingTop="16dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="Add or update an item in your pantry"
                 android:textColor="#DDE8E1"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <!-- Form -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
