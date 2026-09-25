@@ -49,9 +49,9 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         holder.textViewItemName.setText(item.getName());
 
         String quantityText = item.getQuantity() + " " + item.getUnit();
-
         holder.textViewItemQuantity.setText(quantityText);
 
+        //check if expiry date is null or empty
         if(item.getExpiryDate() == null || item.getExpiryDate().isEmpty()){
             holder.textViewItemExpiry.setText("Expiry: N/A");
         }else {
@@ -59,6 +59,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
             SharedPreferences preferences = context.getSharedPreferences("AppSettings", Context.MODE_PRIVATE);
             boolean alertsEnabled = preferences.getBoolean("expiry_alerts_enabled", false);
 
+            //check if expiry alerts are enabled
             if (alertsEnabled){
                 String expiryMessage = getExpiryMessage(item.getExpiryDate());
                 holder.textViewItemExpiry.setText(expiryMessage);
@@ -66,14 +67,12 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
                 holder.textViewItemExpiry.setText("Expiry: " + item.getExpiryDate());
             }
         }
-
         holder.buttonEdit.setOnClickListener(v -> {
             listener.onEditClick(item);
         });
         holder.buttonDelete.setOnClickListener(v -> {
             listener.onDeleteClick(item);
         });
-
     }
 
     private String getExpiryMessage(String expiryDate){

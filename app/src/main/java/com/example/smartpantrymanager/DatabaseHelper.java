@@ -451,18 +451,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<Recipe> allRecipes = getAllrecipes();
         ArrayList<PantryItem> pantryItems = getAllPantryItems();
 
+        //loop through all recipes
         for(Recipe recipe : allRecipes){
             ArrayList<RecipeIngredient> requiredIngredients = getRecipeIngredients(recipe.getId());
-
             boolean canMakeRecipe = true;
-
+            //check if recipe has enough ingredients
             for(RecipeIngredient required : requiredIngredients){
+                //if recipe does not have enough ingredients, set canMakeRecipe to false and break out of loop
                 if(!hasEnoughIngredient(required, pantryItems)){
                     canMakeRecipe = false;
                     break;
                 }
             }
 
+            //if recipe has enough ingredients, add to suggested recipes
             if(canMakeRecipe){
                 suggestedRecipes.add(recipe);
             }
